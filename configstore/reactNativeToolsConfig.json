@@ -1,0 +1,45 @@
+{
+	"version": "1.9.2",
+	"surveyConfig": {
+		"shortPeriodToRemind": 30,
+		"longPeriodToRemind": 90,
+		"popCoveragePercent": 0.1,
+		"enabled": true,
+		"daysLeftBeforeSurvey": 14,
+		"surveyName": "userSatisfactionSurvey",
+		"surveyUrl": "https://www.surveymonkey.com/r/6FJGVDV",
+		"lastExtensionUsageDate": "2022-09-21T10:49:44.806Z"
+	},
+	"tipsConfig": {
+		"daysLeftBeforeGeneralTip": 3,
+		"firstTimeMinDaysToRemind": 4,
+		"firstTimeMaxDaysToRemind": 6,
+		"minDaysToRemind": 6,
+		"maxDaysToRemind": 10,
+		"daysAfterLastUsage": 30,
+		"allTipsShownFirstly": false,
+		"tips": {
+			"generalTips": {
+				"elementInspector": {},
+				"logCatMonitor": {},
+				"networkInspector": {
+					"shownDate": "2022-04-22T20:47:35.030Z"
+				},
+				"directDebuggingWithHermes": {
+					"shownDate": "2022-03-17T22:38:53.202Z"
+				},
+				"debuggingRNWAndMacOSApps": {
+					"shownDate": "2021-12-05T11:57:31.546Z"
+				},
+				"expoHostType": {},
+				"customEnvVariables": {
+					"shownDate": "2022-01-26T00:32:18.913Z"
+				}
+			},
+			"specificTips": {
+				"networkInspectorLogsColorTheme": {}
+			}
+		},
+		"lastExtensionUsageDate": "2022-09-21T10:49:44.389Z"
+	}
+}

@@ -1,0 +1,6 @@
+[submodule "nvim"]
+	path = nvim
+	url = https://github.com/NvChad/NvChad.git
+[submodule "spicetify-themes"]
+	path = spicetify-themes
+	url = https://github.com/spicetify/spicetify-themes.git
