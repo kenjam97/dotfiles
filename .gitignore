@@ -1,0 +1,14 @@
+exercism/
+filezilla/
+htop/
+iterm2/
+neofetch/
+firebase/
+gcloud/
+configstore/
+.DS_Store
+zsh/.zsh_sessions*
+zsh/.zcompdump*
+spotify-tui/.spotify_token_cache.json
+zsh/.zsh_history
+zsh/.zsh_tokens

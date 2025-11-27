@@ -1,0 +1,38 @@
+alias v='nvim'
+alias c='clear'
+alias cat='bat'
+alias lt='du -sh * | sort -hr'
+alias ls='gls -N --group-directories-first --color=auto'
+alias ghi='history 1 |grep'
+alias lg='lazygit'
+alias r='ranger'
+alias zrc='nvim ~/.config/zsh/.zshrc -c "e ~/.config/zsh/.zsh_aliases" -c "bp"; exec zsh'
+alias vrc='nvim ~/.config/nvim'
+alias ..='cd ./..'
+alias ...='cd ./../..'
+alias {:q,:q!,:wq,:wq!,:Q}='exit'
+alias {dotfiles,dots}='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias cheat='~/.config/bin/cheat.sh'
+alias gho="open \`git remote -v | grep fetch | awk '{print \$2}' | sed 's/git@/http:\/\//' | sed 's/com:/com\//'\`| head -n1"
+alias o='open .'
+alias brewup='brew update; brew upgrade; brew cleanup; brew doctor'
+alias gentoken="node -e 'console.log(require(\`crypto\`).randomBytes(256).toString(\`base64\`));' | pbcopy"
+alias update="source ~/.config/zsh/.zshrc"
+alias code="nvim ."
+alias work='pomodoro work 55m'
+alias rest='pomodoro rest 5m'
+alias lrest='pomodoro rest 10m'
+
+# find and kill port
+findandkill() {
+  port=$(lsof -n -i4TCP:$1 | grep LISTEN | awk '{ print $2 }')
+  if [ -z "$port" ]
+  then
+    echo "No process found on port $1"
+  else
+    echo "Killing process $port"
+    kill -9 $port
+  fi
+}
+
+alias killport=findandkill
