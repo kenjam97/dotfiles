@@ -1,9 +1,11 @@
-# Claude critter: the Zebar mascot's pixel art (critter/make.py renders the frames, notes
-# included). Bops while Spotify plays; click = play/pause.
+# Claude critter: the Zebar mascot's pixel art (critter/make.py renders the frames).
+# Shows Claude Code's state (claude_state, from claude/hooks/critter.sh), else bops while
+# Spotify plays (media_state). Click = play/pause.
 # icon.width is the whole pill (46pt, like Zebar). The frames are pill-sized with the critter
 # centred in them, since sketchybar left-aligns icon images. Images render at px * scale pt:
 # 120px * 0.383 = 46pt.
-sketchybar --add item mascot right \
+sketchybar --add event claude_state \
+           --add item mascot right \
            --set mascot icon="" \
                         icon.width=46 \
                         icon.padding_left=0 \
@@ -21,5 +23,5 @@ sketchybar --add item mascot right \
                         updates=on \
                         script="$PLUGINS/mascot.sh" \
                         click_script="osascript -e 'tell application \"Spotify\" to playpause'" \
-           --subscribe mascot media_state
+           --subscribe mascot media_state claude_state
 gap gap.mascot right

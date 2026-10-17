@@ -120,7 +120,7 @@ step "Claude Code"
 mkdir -p ~/.claude/hooks
 [ -e ~/.claude/CLAUDE.md ] || cp "$DOTS/claude/CLAUDE.md" ~/.claude/CLAUDE.md
 [ -e ~/.claude/settings.json ] || cp "$DOTS/claude/settings.json" ~/.claude/settings.json
-cp "$DOTS/claude/hooks/long-session-warning.sh" ~/.claude/hooks/
+cp "$DOTS"/claude/hooks/*.sh ~/.claude/hooks/
 chmod +x ~/.claude/hooks/*.sh
 
 step "Neovim plugins, LSPs, formatters (headless)"
