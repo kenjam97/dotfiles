@@ -1,32 +1,24 @@
-#!/usr/bin/env sh
-
-# General Icons
-LOADING=􀖇
-PREFERENCES=􀺽
-ACTIVITY=􀒓
-LOCK=􀒳
-MAIL=
-MAIL_OPEN=
-BELL=􀋚
-BELL_DOT=􀝗
-
-# Git Icons
-GIT_ISSUE=􀍷
-GIT_DISCUSSION=􀒤
-GIT_PULL_REQUEST=􀙡
-GIT_COMMIT=􀡚
-GIT_INDICATOR=􀂓
-
-# Spotify Icons
-SPOTIFY_BACK=􀊎
-SPOTIFY_PLAY_PAUSE=􀊈
-SPOTIFY_NEXT=􀊐
-SPOTIFY_SHUFFLE=􀊝
-SPOTIFY_REPEAT=􀊞
-
-# Yabai Icons
-YABAI_STACK=􀏭
-YABAI_FULLSCREEN_ZOOM=􀏜
-YABAI_PARENT_ZOOM=􀥃
-YABAI_FLOAT=􀢌
-YABAI_GRID=􀧍
+# Nerd Font glyphs, named as in the Zebar bar (nf-md-*, nf-oct-*, nf-fae-*)
+export ICON_CALENDAR=$'\U000f00ee'
+export ICON_CLOCK=$'\U000f0150'
+export ICON_MUSIC=$'\U000f0387'
+export ICON_PREV=$'\U000f04ae'
+export ICON_NEXT=$'\U000f04ad'
+export ICON_PLAY=$'\U000f040a'
+export ICON_PAUSE=$'\U000f03e4'
+export ICON_VOL_OFF=$'\U000f0581'
+export ICON_VOL_LOW=$'\U000f057f'
+export ICON_VOL_MED=$'\U000f0580'
+export ICON_VOL_HIGH=$'\U000f057e'
+export ICON_CPU=$''
+export ICON_MEM=$''
+export ICON_WIFI=$'\U000f0928'
+export ICON_WIFI_OFF=$'\U000f092e'
+export ICON_ETHERNET=$'\U000f0200'
+export ICON_BAT_CHARGING=$'\U000f0084'
+export ICON_BAT_FULL=$'\U000f0079'
+export ICON_BAT=($'\U000f007a' $'\U000f007b' $'\U000f007c' $'\U000f007d' $'\U000f007e' $'\U000f007f' $'\U000f0080' $'\U000f0081' $'\U000f0082')
+export ICON_BSP=$'\U000f0570'
+export ICON_STACK=$'\U000f09fe'
+export ICON_FLOAT=$'\U000f05af'
+export ICON_CRITTER=$'\U000f171a'

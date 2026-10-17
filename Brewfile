@@ -43,7 +43,7 @@ brew "odin"
 brew "raylib"
 brew "cmake"
 brew "bear" # compile_commands.json for clangd from plain Makefiles
-cask "love"
+# LÖVE: the cask was disabled (fails Gatekeeper); install from https://love2d.org
 
 # apps
 cask "alacritty"

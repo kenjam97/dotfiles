@@ -1,39 +1,27 @@
-#!/usr/bin/env sh
-
-source "$HOME/.config/sketchybar/colors.sh" # Loads all defined colors
-
-# SPACE_ICONS=("1" "2" "3" "4" "5" "6" "7" "8" "9" "10")
-# SPACE_ICONS=("I" "II" "III" "IV" "V" "VI" "VII" "VIII" "IX" "X")
-# typically I arrange spaces as:
-# space icons 1 is code editor, 2, is browser, 3 is slack, 4 is spotify and 5+ are just whatever else I might have open
-# add youtube play icon
-SPACE_ICONS=("" "" "" "" "4" "5" "6" "7" "8" "9" "10")
-
-for i in "${!SPACE_ICONS[@]}"
-do
-  sid=$(($i+1))
-  sketchybar --add space      space.$sid left                    \
-             --set space.$sid associated_space=$sid              \
-                              icon=${SPACE_ICONS[i]}             \
-                              icon.font.size=20                       \
-                              icon.padding_left=22               \
-                              icon.padding_right=22              \
-                              icon.color=$DIM   \
-                              icon.highlight_color=$ACCENT        \
-                              background.padding_left=-8         \
-                              background.padding_right=-8        \
-                              background.height=20               \
-                              background.corner_radius=10        \
-                              background.color=$BASE            \
-                              background.drawing=on              \
-                              label.drawing=off                  \
-                              click_script="$SPACE_CLICK_SCRIPT"
+# Workspace buttons 1-10. plugins/spaces.sh shows the ones yabai has and styles them like
+# Zebar: focused = mauve, visible on another display = surface0, occupied vs empty by text colour.
+for sid in {1..10}; do
+  sketchybar --add item space.$sid left \
+             --set space.$sid drawing=off \
+                              icon.drawing=off \
+                              label=$sid \
+                              label.align=center \
+                              label.width=26 \
+                              label.padding_left=0 \
+                              label.padding_right=0 \
+                              background.height=24 \
+                              background.corner_radius=8 \
+                              background.color=$TRANSPARENT \
+                              padding_left=2 \
+                              padding_right=2 \
+                              click_script="yabai -m space --focus $sid"
 done
+sketchybar --set space.1 padding_left=5 --set space.10 padding_right=5
 
-# sketchybar   --add item       separator left                          \
-#              --set separator  icon=                                  \
-#                               icon.font="Hack Nerd Font:Regular:16.0" \
-#                               background.padding_left=26              \
-#                               background.padding_right=15             \
-#                               label.drawing=off                       \
-#                               icon.color=$WHITE
+sketchybar --add event window_focus \
+           --add item spaces_refresh left \
+           --set spaces_refresh drawing=off updates=on script="$PLUGINS/spaces.sh" \
+           --subscribe spaces_refresh space_change space_windows_change display_change front_app_switched window_focus
+
+pill workspaces '/space\.[0-9]+/'
+gap gap.spaces left

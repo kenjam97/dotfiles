@@ -22,12 +22,18 @@ link() {  # link <target-in-repo> <path>
 }
 
 step "Xcode command line tools"
-xcode-select -p >/dev/null 2>&1 || { xcode-select --install; echo "Re-run once the CLT installer finishes."; exit 0; }
+# Check the CLT package itself: `xcode-select -p` also passes with only Xcode.app, which
+# isn't enough for Homebrew to build from source (yabai, borders).
+pkgutil --pkg-info=com.apple.pkg.CLTools_Executables >/dev/null 2>&1 || { xcode-select --install; echo "Re-run once the CLT installer finishes."; exit 0; }
 
 step "Homebrew + Brewfile"
 command -v brew >/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/opt/homebrew/bin/brew shellenv)"
-brew bundle --file "$DOTS/Brewfile"
+# Homebrew 5 won't load third-party taps (yabai/skhd, sketchybar/borders) until trusted.
+brew tap koekeishiya/formulae && brew tap felixkratz/formulae
+brew trust koekeishiya/formulae felixkratz/formulae
+# A cask upgrade that needs sudo shouldn't stop the rest; rerun `brew bundle` in a terminal later.
+brew bundle --file "$DOTS/Brewfile" || printf '\033[1;33m!! brew bundle had failures (see above); continuing\033[0m\n'
 
 step "symlinks"
 mkdir -p ~/.local/bin ~/.config ~/code/personal ~/code/archive
@@ -46,6 +52,8 @@ link "$DOTS/sketchybar"            ~/.config/sketchybar
 link "$DOTS/karabiner"             ~/.config/karabiner
 link "$DOTS/bin/tmux-sessionizer"  ~/.local/bin/tmux-sessionizer
 
+# A GOROOT left over from an old shell config breaks mise's go install.
+unset GOROOT GOPATH
 step "mise tools (node, pnpm, bun, go, neovim, gh, starship, atuin, lazygit, ...)"
 mise install -y
 

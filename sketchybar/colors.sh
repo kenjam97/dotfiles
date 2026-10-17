@@ -1,32 +1,21 @@
-#!/usr/bin/env sh
+# Catppuccin Mocha, same palette as the Zebar bar on Windows (0xAARRGGBB)
+export CRUST=0xff11111b
+export BASE=0xff1e1e2e
+export SURFACE0=0xff313244
+export SURFACE1=0xff45475a
+export OVERLAY1=0xff7f849c
+export SUBTEXT0=0xffa6adc8
+export TEXT=0xffcdd6f4
+export MAUVE=0xffcba6f7
+export PINK=0xfff5c2e7
+export RED=0xfff38ba8
+export PEACH=0xfffab387
+export GREEN=0xffa6e3a1
+export TEAL=0xff94e2d5
+export BLUE=0xff89b4fa
+export LAVENDER=0xffb4befe
+export CLAUDE=0xffd97757
 
-# Color Palette
-BLACK=0xff181926
-WHITE=0xffcad3f5
-RED=0xffe86671
-GREEN=0xff98c379
-BLUE=0xff8fbedc
-YELLOW=0xffeed49f
-ORANGE=0xfff5a97f
-MAGENTA=0xffc6a0f6
-GREY=0xff939ab7
-TRANSPARENT=0x00000000
-
-# Catppuccin Mocha (matches Alacritty, tmux, Neovim)
-BASE=0xff1e1e2e
-TEXT=0xffcdd6f4
-ACCENT=0xffcba6f7 # mauve
-DIM=0xff45475a    # surface1
-
-# General bar colors
-BAR_COLOR=$BASE
-ICON_COLOR=$TEXT
-LABEL_COLOR=$TEXT
-
-POPUP_BACKGROUND_COLOR=$BLACK
-POPUP_BORDER_COLOR=$BLACK
-
-SHADOW_COLOR=$BLACK
-
-# Item specific special colors
-SPOTIFY_GREEN=0xff1db954
+export TRANSPARENT=0x00000000
+export PILL_BG=0xe01e1e2e      # base at 88%
+export PILL_BORDER=0x14cdd6f4  # text at 8%
