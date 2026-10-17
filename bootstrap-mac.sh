@@ -47,6 +47,9 @@ if [ "v${alacritty_ver:-none}" != "$latest" ]; then
   hdiutil detach -quiet "$tmp/mnt"
   rm -rf "$tmp" /opt/homebrew/Caskroom/alacritty
 fi
+# The app menu's Hide (Cmd+H) beats alacritty.toml's Cmd+H tmux binding; move it to Cmd+Opt+Ctrl+Shift+H.
+# winit titles the item with the process name, which is lowercase.
+defaults write org.alacritty NSUserKeyEquivalents -dict-add "Hide alacritty" '@~^$h'
 
 step "LÖVE (official release; the Homebrew cask was disabled 2026-09)"
 if [ ! -d /Applications/love.app ]; then

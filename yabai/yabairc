@@ -58,9 +58,11 @@ yabai -m rule --add app="${apps}" title="( – )" manage=on
 yabai -m signal --add event=window_destroyed action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
 yabai -m signal --add event=application_terminated action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
 
-HEIGHT=$(sketchybar --query bar | jq -r '.height')
-Y_OFFSET=$(sketchybar --query bar | jq -r '.y_offset')
-yabai -m config external_bar all:"$(($HEIGHT + $Y_OFFSET))":0
+# At login yabai can start before sketchybar, so the query comes back empty;
+# fall back to the values in sketchybarrc (height=44, y_offset=4).
+HEIGHT=$(sketchybar --query bar 2>/dev/null | jq -r '.height // empty')
+Y_OFFSET=$(sketchybar --query bar 2>/dev/null | jq -r '.y_offset // empty')
+yabai -m config external_bar all:"$((${HEIGHT:-44} + ${Y_OFFSET:-4}))":0
 yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
 yabai -m signal --add event=window_title_changed action="sketchybar --trigger window_focus"
 
