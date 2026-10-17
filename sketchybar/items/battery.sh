@@ -6,5 +6,5 @@ sketchybar --add item battery right                     \
                       background.padding_left=5         \
                       icon.font="$ICON_FONT:Solid:14.0" \
                       icon=                            \
-                      icon.color=$EVERFOREST_HIGHLIGHT  \
+                      icon.color=$TEXT  \
                       label=!

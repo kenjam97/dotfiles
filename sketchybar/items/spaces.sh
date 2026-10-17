@@ -18,13 +18,13 @@ do
                               icon.font.size=20                       \
                               icon.padding_left=22               \
                               icon.padding_right=22              \
-                              icon.color=$EVERFOREST_BG_YELLOW   \
-                              icon.highlight_color=$EVERFOREST_HIGHLIGHT        \
+                              icon.color=$DIM   \
+                              icon.highlight_color=$ACCENT        \
                               background.padding_left=-8         \
                               background.padding_right=-8        \
                               background.height=20               \
                               background.corner_radius=10        \
-                              background.color=$EVERFOREST_BASE            \
+                              background.color=$BASE            \
                               background.drawing=on              \
                               label.drawing=off                  \
                               click_script="$SPACE_CLICK_SCRIPT"

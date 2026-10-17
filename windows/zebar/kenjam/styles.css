@@ -1,0 +1,414 @@
+/* Nerd Font icon classes (nf-*). Cheat sheet: https://www.nerdfonts.com/cheat-sheet */
+@import 'https://www.nerdfonts.com/assets/css/webfont.css';
+
+/* Catppuccin Mocha — matches Alacritty, tmux and Neovim. */
+:root {
+  --base: #1e1e2e;
+  --mantle: #181825;
+  --crust: #11111b;
+  --surface0: #313244;
+  --surface1: #45475a;
+  --surface2: #585b70;
+  --overlay0: #6c7086;
+  --overlay1: #7f849c;
+  --subtext0: #a6adc8;
+  --text: #cdd6f4;
+  --mauve: #cba6f7;
+  --pink: #f5c2e7;
+  --red: #f38ba8;
+  --peach: #fab387;
+  --yellow: #f9e2af;
+  --green: #a6e3a1;
+  --teal: #94e2d5;
+  --blue: #89b4fa;
+  --lavender: #b4befe;
+
+  --font: 'FiraCode Nerd Font', 'JetBrainsMono NF', 'Segoe UI', sans-serif;
+  --radius: 12px;
+  --pill-bg: rgb(30 30 46 / 88%);
+  --pill-border: rgb(205 214 244 / 8%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 12.5px;
+  user-select: none;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+i.nf {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Floating bar: 10px from the screen edges, like the old yabai gaps. */
+.bar {
+  position: absolute;
+  inset: 8px 10px 6px 10px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+}
+
+.left,
+.right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.right {
+  justify-content: flex-end;
+}
+
+.pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: var(--radius);
+  background: var(--pill-bg);
+  border: 1px solid var(--pill-border);
+  box-shadow: 0 4px 14px rgb(0 0 0 / 30%);
+  backdrop-filter: blur(12px);
+  white-space: nowrap;
+}
+
+/* Workspaces */
+.workspaces {
+  gap: 4px;
+  padding: 0 5px;
+}
+
+.ws {
+  min-width: 24px;
+  height: 24px;
+  padding: 0 6px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  color: var(--overlay1);
+  font-weight: 600;
+  transition: background 140ms ease, color 140ms ease;
+}
+
+.ws.occupied {
+  color: var(--subtext0);
+}
+
+.ws:hover {
+  background: var(--surface0);
+  color: var(--text);
+}
+
+.ws.displayed {
+  background: var(--surface0);
+  color: var(--lavender);
+}
+
+.ws.focused {
+  background: var(--mauve);
+  color: var(--crust);
+}
+
+/* Binding mode / paused / tiling direction */
+.mode-slot {
+  display: flex;
+  gap: 6px;
+}
+
+.badge {
+  padding: 0 10px;
+  gap: 6px;
+  color: var(--subtext0);
+}
+
+.badge:hover {
+  color: var(--text);
+}
+
+.badge.mode {
+  background: var(--peach);
+  color: var(--crust);
+}
+
+.badge.paused {
+  background: var(--red);
+  color: var(--crust);
+}
+
+/* Focused window */
+.window-title {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+  padding-left: 4px;
+  overflow: hidden;
+  text-shadow: 0 1px 6px rgb(0 0 0 / 60%);
+}
+
+.window-title .proc {
+  color: var(--mauve);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.window-title .title {
+  color: var(--subtext0);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Clock */
+.clock {
+  font-weight: 600;
+}
+
+.clock .sep {
+  width: 1px;
+  height: 14px;
+  background: var(--surface1);
+}
+
+.clock .time {
+  color: var(--text);
+  letter-spacing: 0.5px;
+}
+
+/* Media */
+.media {
+  gap: 4px;
+  padding: 0 12px 0 6px;
+}
+
+.media .ctls {
+  display: flex;
+  gap: 2px;
+}
+
+.media .ctl {
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  color: var(--subtext0);
+}
+
+.media .ctl:hover {
+  background: var(--surface0);
+  color: var(--text);
+}
+
+.media .ctl.play {
+  color: var(--pink);
+}
+
+.media .track {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 4px;
+  min-width: 0;
+}
+
+/* Fixed-width window the title scrolls through. */
+.media .marquee {
+  max-width: 280px;
+  overflow: hidden;
+}
+
+.media .marquee.scrolling {
+  width: 280px;
+  mask-image: linear-gradient(90deg, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%);
+}
+
+.media .marquee-inner {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.media .text {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.media .artist {
+  color: var(--overlay1);
+}
+
+.media .artist::before {
+  content: '·';
+  margin-right: 8px;
+  color: var(--surface2);
+}
+
+/* Mascot: pixel Claude critter. Idle = breathe + blink; .dancing while music plays.
+   Deliberately not gated on prefers-reduced-motion: Windows animations are off on this
+   machine, which would otherwise stop him dancing. */
+.mascot {
+  position: relative;
+  width: 46px;
+  padding: 0;
+  justify-content: center;
+  overflow: visible;
+}
+
+.mascot svg {
+  width: 34px;
+  height: 26px;
+  overflow: visible;
+}
+
+.mascot .critter {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: mascot-breathe 3.2s ease-in-out infinite;
+}
+
+.mascot .body,
+.mascot .arm,
+.mascot .leg {
+  fill: #d97757;
+}
+
+.mascot .eyes {
+  fill: var(--crust);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: mascot-blink 4.6s infinite;
+}
+
+.mascot .arm,
+.mascot .leg {
+  transform-box: fill-box;
+}
+
+.mascot .note {
+  position: absolute;
+  top: 2px;
+  font-size: 11px;
+  color: var(--pink);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mascot .n1 { left: 4px; }
+.mascot .n2 { right: 4px; color: var(--mauve); }
+
+.mascot:hover .critter {
+  filter: brightness(1.12);
+}
+
+/* Dancing */
+.mascot.dancing .critter {
+  animation: mascot-bop 0.5s ease-in-out infinite alternate;
+}
+
+.mascot.dancing .arm-l { animation: mascot-arm 0.5s steps(1) infinite; }
+.mascot.dancing .arm-r { animation: mascot-arm 0.5s steps(1) infinite 0.25s; }
+.mascot.dancing .leg-a { animation: mascot-step 0.5s steps(1) infinite; }
+.mascot.dancing .leg-b { animation: mascot-step 0.5s steps(1) infinite 0.25s; }
+
+.mascot.dancing .n1 { animation: mascot-note 1.6s ease-out infinite; }
+.mascot.dancing .n2 { animation: mascot-note 1.6s ease-out infinite 0.8s; }
+
+@keyframes mascot-breathe {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(1.05); }
+}
+
+@keyframes mascot-blink {
+  0%, 95%, 100% { transform: scaleY(1); }
+  97% { transform: scaleY(0.15); }
+}
+
+@keyframes mascot-bop {
+  from { transform: translateY(1px) rotate(-7deg); }
+  to { transform: translateY(-2px) rotate(7deg); }
+}
+
+@keyframes mascot-arm {
+  0% { transform: translateY(-2px); }
+  50% { transform: translateY(0); }
+}
+
+@keyframes mascot-step {
+  0% { transform: translateY(-1px); }
+  50% { transform: translateY(0); }
+}
+
+@keyframes mascot-note {
+  0% { opacity: 0; transform: translate(0, 10px) scale(0.8); }
+  20% { opacity: 1; }
+  100% { opacity: 0; transform: translate(4px, -6px) scale(1.1) rotate(12deg); }
+}
+
+/* Stats */
+.stats {
+  gap: 14px;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--subtext0);
+}
+
+/* Wide enough for "100%" so the pill never resizes as values change. */
+.stat .num {
+  display: inline-block;
+  min-width: 4ch;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat.hot {
+  color: var(--red);
+}
+
+.stat.volume {
+  cursor: ns-resize;
+}
+
+.ssid {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.accent-blue { color: var(--blue); }
+.accent-mauve { color: var(--mauve); }
+.accent-pink { color: var(--pink); }
+.accent-peach { color: var(--peach); }
+.accent-teal { color: var(--teal); }
+.accent-green { color: var(--green); }
+.accent-red { color: var(--red); }

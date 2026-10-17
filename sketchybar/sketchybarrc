@@ -6,7 +6,7 @@ source "$HOME/.config/sketchybar/icons.sh" # Loads all defined icons
 ITEM_DIR="$HOME/.config/sketchybar/items" # Directory where the items are configured
 PLUGIN_DIR="$HOME/.config/sketchybar/plugins" # Directory where all the plugin scripts are stored
 
-FONT="MesloLGS NF" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
+FONT="JetBrainsMono Nerd Font" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
 ICON_FONT="Font Awesome 5 Free" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
 SPACE_CLICK_SCRIPT="yabai -m space --focus \$SID 2>/dev/null" # The script that is run for clicking on space components
 
@@ -33,7 +33,7 @@ sketchybar --bar     height=30                                           \
                      y_offset=10                                         \
                      shadow=$SHADOW                                      \
                      border_width=2                                      \
-                     border_color=$EVERFOREST_HIGHLIGHT                  \
+                     border_color=$ACCENT                               \
                      notch_width=200                                     \
                                                                          \
            --default drawing=on                                          \

@@ -1,0 +1,45 @@
+# lazygit — Catppuccin Mocha (mauve accent), diffs through delta.
+gui:
+  nerdFontsVersion: "3"
+  showIcons: true
+  border: rounded
+  theme:
+    activeBorderColor:
+      - "#cba6f7"
+      - bold
+    inactiveBorderColor:
+      - "#a6adc8"
+    optionsTextColor:
+      - "#89b4fa"
+    selectedLineBgColor:
+      - "#313244"
+    cherryPickedCommitBgColor:
+      - "#45475a"
+    cherryPickedCommitFgColor:
+      - "#cba6f7"
+    unstagedChangesColor:
+      - "#f38ba8"
+    defaultFgColor:
+      - "#cdd6f4"
+    searchingActiveBorderColor:
+      - "#f9e2af"
+  authorColors:
+    "*": "#b4befe"
+
+git:
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never --line-numbers
+  mainBranches: [dev, main, master]
+  autoFetch: true
+
+os:
+  editPreset: nvim
+
+customCommands:
+  # A: fold staged fixes into the commits they belong to (git-absorb)
+  - key: "A"
+    context: "files"
+    command: "git absorb --and-rebase"
+    description: "git absorb staged fixes into earlier commits"
+    loadingText: "Absorbing..."

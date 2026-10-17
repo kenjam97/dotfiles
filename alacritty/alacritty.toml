@@ -1,150 +1,70 @@
-    import = [
-      # uncomment the flavour you want below:
-      # "~/.config/alacritty/catppuccin-latte.toml"
-      # "~/.config/alacritty/catppuccin-frappe.toml"
-      # "~/.config/alacritty/catppuccin-macchiato.toml"
-      # "~/.config/alacritty/catppuccin-mocha.toml"
-      # "~/.config/alacritty/themes/themes/everforest_dark.toml"
-      # "~/.config/alacritty/themes/themes/marine_dark.toml"
-      "~/.config/alacritty/themes/themes/gruvbox_dark.toml"
-    ]
+# macOS Alacritty. Cmd shortcuts are sent to tmux as prefix (Ctrl+T, \u0014) + key,
+# so they match the bindings in tmux/tmux.conf. Windows has its own file in windows/alacritty.
+
+[general]
+import = ["~/.config/alacritty/catppuccin-mocha.toml"]
 
 [env]
 TERM = "xterm-256color"
 
+[cursor]
+style = { shape = "Block", blinking = "Off" }
+vi_mode_style = { shape = "Beam" }
+unfocused_hollow = true
+
+[selection]
+save_to_clipboard = true
+
+[mouse]
+hide_when_typing = true
+
 [font]
 size = 16.0
-
-[font.glyph_offset]
-x = 0
-y = 0
-
-[font.normal]
-family = "JetBrainsMono NF"
-style = "Regular"
-
-[font.offset]
-x = 0
-y = 0
-
-[[keyboard.bindings]]
-chars = "\u0001v"
-key = "D"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u0001s"
-key = "D"
-mods = "Command|Shift"
-
-[[keyboard.bindings]]
-chars = "\u0001x"
-key = "W"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u0001h"
-key = "H"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u0001j"
-key = "J"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u0001k"
-key = "K"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u0001l"
-key = "L"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u0001c"
-key = "T"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u00011"
-key = "Key1"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u00012"
-key = "Key2"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u00013"
-key = "Key3"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u00014"
-key = "Key4"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u00015"
-key = "Key5"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u00016"
-key = "Key6"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u00017"
-key = "Key7"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u00018"
-key = "Key8"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u00019"
-key = "Key9"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u0001H"
-key = "Left"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u0001J"
-key = "Down"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u0001K"
-key = "Up"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u0001L"
-key = "Right"
-mods = "Command"
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
 
 [scrolling]
 history = 10000
 multiplier = 1
 
 [window]
-decorations = "buttonless"
-opacity = 0.85
+decorations = "Buttonless"
+opacity = 0.9
 option_as_alt = "Both"
+dynamic_padding = true
+dimensions = { columns = 100, lines = 30 }
+padding = { x = 16, y = 16 }
 
-[window.dimensions]
-columns = 100
-lines = 30
+[keyboard]
+bindings = [
+  # Claude Code: newline without submitting
+  { key = "Return", mods = "Shift", chars = "\u001B\r" },
 
-[window.padding]
-x = 16
-y = 16
+  # tmux: splits / new window / kill pane
+  { key = "D", mods = "Command", chars = "\u0014v" },
+  { key = "D", mods = "Command|Shift", chars = "\u0014s" },
+  { key = "T", mods = "Command", chars = "\u0014c" },
+  { key = "W", mods = "Command", chars = "\u0014x" },
+
+  # tmux: move between panes
+  { key = "H", mods = "Command", chars = "\u0014h" },
+  { key = "J", mods = "Command", chars = "\u0014j" },
+  { key = "K", mods = "Command", chars = "\u0014k" },
+  { key = "L", mods = "Command", chars = "\u0014l" },
+
+  # tmux: resize panes
+  { key = "Left", mods = "Command", chars = "\u0014H" },
+  { key = "Down", mods = "Command", chars = "\u0014J" },
+  { key = "Up", mods = "Command", chars = "\u0014K" },
+  { key = "Right", mods = "Command", chars = "\u0014L" },
+
+  # tmux: windows 1-9
+  { key = "Key1", mods = "Command", chars = "\u00141" },
+  { key = "Key2", mods = "Command", chars = "\u00142" },
+  { key = "Key3", mods = "Command", chars = "\u00143" },
+  { key = "Key4", mods = "Command", chars = "\u00144" },
+  { key = "Key5", mods = "Command", chars = "\u00145" },
+  { key = "Key6", mods = "Command", chars = "\u00146" },
+  { key = "Key7", mods = "Command", chars = "\u00147" },
+  { key = "Key8", mods = "Command", chars = "\u00148" },
+  { key = "Key9", mods = "Command", chars = "\u00149" },
+]

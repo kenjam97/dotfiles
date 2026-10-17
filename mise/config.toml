@@ -1,0 +1,17 @@
+[tools]
+# starship/atuin/lazygit/xh live here, not apt: Ubuntu 24.04 doesn't package them.
+ast-grep = "latest"
+atuin = "latest"
+bun = "latest"
+difftastic = "latest"
+gh = "latest"
+go = "latest"
+lazygit = "latest"
+neovim = "0.12.2"
+node = "25"
+pnpm = "latest"
+"pipx:posting" = "latest"
+starship = "latest"
+tree-sitter = "latest"
+uv = "latest"
+xh = "latest"

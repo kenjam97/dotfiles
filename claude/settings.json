@@ -1,0 +1,46 @@
+{
+  "env": {
+    "EDITOR": "nvim"
+  },
+  "model": "opus",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/long-session-warning.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true,
+    "statuspane@claude-statuspane": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-statuspane": {
+      "source": {
+        "source": "github",
+        "repo": "xuanji86/claude-statuspane"
+      }
+    }
+  },
+  "effortLevel": "medium",
+  "modelSettings": {
+    "claude-sonnet-5": {
+      "effortLevel": "medium"
+    },
+    "claude-sonnet-5-5": {
+      "autoCompactWindow": 400000
+    },
+    "claude-opus-5-5": {
+      "autoCompactWindow": 400000
+    }
+  },
+  "autoUpdatesChannel": "latest",
+  "theme": "dark",
+  "verbose": false
+}

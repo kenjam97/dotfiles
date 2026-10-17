@@ -1,0 +1,79 @@
+[env]
+TERM = "xterm-256color"
+
+[terminal]
+# WSL Ubuntu + tmux. Ctrl+Shift+P opens a separate PowerShell window.
+shell = { program = "wsl.exe", args = ["-d", "Ubuntu", "--cd", "~", "--", "tmux", "new", "-A", "-s", "main"] }
+
+[cursor]
+style = { shape = "Block", blinking = "Off" }
+vi_mode_style = { shape = "Beam" }
+unfocused_hollow = true
+
+[selection]
+save_to_clipboard = true
+
+[mouse]
+hide_when_typing = true
+
+[font]
+size = 12.5
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.normal]
+family = "FiraCode Nerd Font"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 0
+
+[scrolling]
+history = 10000
+multiplier = 1
+
+[window]
+decorations = "None"
+opacity = 0.96
+dynamic_padding = true
+
+[window.dimensions]
+columns = 100
+lines = 30
+
+[window.padding]
+x = 14
+y = 10
+
+[general]
+import = [
+	"./themes/catppuccin-mocha.toml"
+]
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"
+
+[[keyboard.bindings]]
+key = "V"
+mods = "Control|Shift"
+action = "Paste"
+
+[[keyboard.bindings]]
+key = "P"
+mods = "Control|Shift"
+command = { program = "C:\\Program Files\\Alacritty\\alacritty.exe", args = ["-e", "C:\\Program Files\\PowerShell\\7\\pwsh.exe", "-NoLogo"] }
+
+[[keyboard.bindings]]
+key = "Insert"
+mods = "Shift"
+action = "Paste"
+
+[[keyboard.bindings]]
+key = "Insert"
+mods = "Control|Shift"
+action = "Paste"

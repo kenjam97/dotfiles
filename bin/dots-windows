@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+# Sync the Windows-side configs in ~/dotfiles/windows with their live locations.
+#   dots-windows capture   copy live Windows configs INTO the repo (after editing them on Windows)
+#   dots-windows apply     copy repo configs OUT to Windows (fresh machine / after a pull);
+#                          existing files are backed up as <file>.pre-dotfiles first
+#   dots-windows diff      show what differs
+# Copies rather than symlinks: Windows apps can't follow links into the WSL filesystem.
+set -euo pipefail
+
+DOTS="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd)"
+WINUSER="${WINUSER:-$(/mnt/c/WINDOWS/system32/cmd.exe /c 'echo %USERNAME%' 2>/dev/null | tr -d '\r')}"
+W="/mnt/c/Users/$WINUSER"
+[ -d "$W" ] || { echo "Windows home not found: $W (set WINUSER)" >&2; exit 1; }
+
+# repo path | Windows path
+MAP=(
+  "windows/glazewm/config.yaml|$W/.glzr/glazewm/config.yaml"
+  "windows/zebar/settings.json|$W/.glzr/zebar/settings.json"
+  "windows/zebar/kenjam/zpack.json|$W/.glzr/zebar/kenjam/zpack.json"
+  "windows/zebar/kenjam/bar.html|$W/.glzr/zebar/kenjam/bar.html"
+  "windows/zebar/kenjam/bar.js|$W/.glzr/zebar/kenjam/bar.js"
+  "windows/zebar/kenjam/styles.css|$W/.glzr/zebar/kenjam/styles.css"
+  "windows/alacritty/alacritty.toml|$W/AppData/Roaming/alacritty/alacritty.toml"
+  "alacritty/catppuccin-mocha.toml|$W/AppData/Roaming/alacritty/themes/catppuccin-mocha.toml"
+  "windows/wsl/.wslconfig|$W/.wslconfig"
+)
+
+case "${1:-}" in
+  capture)
+    for m in "${MAP[@]}"; do
+      repo="$DOTS/${m%%|*}"; live="${m#*|}"
+      [ -f "$live" ] || { echo "skip (missing): $live"; continue; }
+      mkdir -p "$(dirname "$repo")"
+      tr -d '\r' < "$live" > "$repo"; chmod 644 "$repo"
+      echo "captured ${m%%|*}"
+    done ;;
+  apply)
+    for m in "${MAP[@]}"; do
+      repo="$DOTS/${m%%|*}"; live="${m#*|}"
+      mkdir -p "$(dirname "$live")"
+      if [ -f "$live" ] && ! cmp -s <(tr -d '\r' < "$live") "$repo"; then cp "$live" "$live.pre-dotfiles"; fi
+      cp "$repo" "$live"
+      echo "applied ${m%%|*}"
+    done
+    echo "Reload: Alt+Shift+R (GlazeWM), 'zebar startup', new Alacritty window; .wslconfig needs 'wsl --shutdown'." ;;
+  diff)
+    for m in "${MAP[@]}"; do
+      repo="$DOTS/${m%%|*}"; live="${m#*|}"
+      if [ ! -f "$live" ]; then echo "missing on Windows: ${m%%|*}"
+      elif ! cmp -s <(tr -d '\r' < "$live") "$repo"; then echo "differs: ${m%%|*}"; diff -u "$repo" <(tr -d '\r' < "$live") | sed -n '3,20p'
+      fi
+    done ;;
+  *) echo "usage: dots-windows {capture|apply|diff}" >&2; exit 2 ;;
+esac

@@ -1,0 +1,19 @@
+# WSL2 global settings. Apply with: wsl --shutdown  (closes all WSL windows/tmux sessions)
+# Docs: https://learn.microsoft.com/windows/wsl/wsl-config
+
+[wsl2]
+# memory: default = half of the host's RAM (16GB on the 32GB laptop), so it suits any machine.
+swap=8GB
+# processors: default = all 14 threads.
+
+# Windows <-> WSL share localhost both ways (Windows browser -> API/Vite running in WSL).
+# Note: a port can only be bound once across both, so don't run the API on Windows and WSL at the same time.
+networkingMode=mirrored
+dnsTunneling=true
+autoProxy=true
+
+[experimental]
+# Hand freed memory back to Windows gradually instead of holding it in the page cache.
+autoMemoryReclaim=gradual
+# Shrink the ext4.vhdx automatically when files are deleted.
+sparseVhd=true

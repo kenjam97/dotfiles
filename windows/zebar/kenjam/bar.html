@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+  </head>
+  <body>
+    <div id="bar" class="bar">
+      <div class="left">
+        <div id="workspaces" class="pill workspaces"></div>
+        <div id="mode" class="mode-slot"></div>
+        <div id="window" class="window-title"></div>
+      </div>
+      <div class="center">
+        <div id="clock" class="pill clock"></div>
+      </div>
+      <div class="right">
+        <!-- Pixel Claude critter: idles, dances while music plays; click = play/pause. -->
+        <button id="mascot" class="pill mascot" data-media="togglePlayPause" title="Play / pause">
+          <span class="note n1">♪</span>
+          <span class="note n2">♫</span>
+          <svg viewBox="0 0 16 12" shape-rendering="crispEdges" aria-hidden="true">
+            <g class="critter">
+              <rect class="arm arm-l" x="1" y="4" width="2" height="2" />
+              <rect class="arm arm-r" x="13" y="4" width="2" height="2" />
+              <rect class="leg leg-a" x="4" y="8" width="1" height="3" />
+              <rect class="leg leg-b" x="6" y="8" width="1" height="3" />
+              <rect class="leg leg-a" x="9" y="8" width="1" height="3" />
+              <rect class="leg leg-b" x="11" y="8" width="1" height="3" />
+              <rect class="body" x="3" y="2" width="10" height="6" />
+              <g class="eyes">
+                <rect x="5" y="4" width="1" height="2" />
+                <rect x="10" y="4" width="1" height="2" />
+              </g>
+            </g>
+          </svg>
+        </button>
+        <div id="media" class="pill media hidden">
+          <div id="media-ctl" class="ctls"></div>
+          <div id="media-track" class="track"></div>
+        </div>
+        <div id="stats" class="pill stats"></div>
+      </div>
+    </div>
+
+    <script type="module" src="./bar.js"></script>
+  </body>
+</html>

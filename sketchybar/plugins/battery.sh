@@ -4,7 +4,7 @@ source "$HOME/.config/sketchybar/colors.sh" # Loads all defined colors
 
 BATT_PERCENT=$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)
 
-COLOR=$EVERFOREST_HIGHLIGHT
+COLOR=$TEXT
 if ((BATT_PERCENT >= 75)); then
 	ICON=""
 elif ((BATT_PERCENT >= 50)); then
