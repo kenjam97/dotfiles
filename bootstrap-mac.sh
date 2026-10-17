@@ -48,6 +48,14 @@ if [ "v${alacritty_ver:-none}" != "$latest" ]; then
   rm -rf "$tmp" /opt/homebrew/Caskroom/alacritty
 fi
 
+step "LÖVE (official release; the Homebrew cask was disabled 2026-09)"
+if [ ! -d /Applications/love.app ]; then
+  tmp=$(mktemp -d)
+  url=$(curl -fsSL https://api.github.com/repos/love2d/love/releases/latest | jq -r '.assets[] | select(.name | test("macos"; "i")) | .browser_download_url')
+  curl -fsSL -o "$tmp/love.zip" "$url" && ditto -x -k "$tmp/love.zip" "$tmp" && cp -R "$tmp/love.app" /Applications/
+  rm -rf "$tmp"
+fi
+
 step "symlinks"
 mkdir -p ~/.local/bin ~/.config ~/code/personal ~/code/archive
 printf 'export ZDOTDIR="$HOME/.config/zsh"\n' > ~/.zshenv
@@ -64,6 +72,7 @@ link "$DOTS/skhd"                  ~/.config/skhd
 link "$DOTS/sketchybar"            ~/.config/sketchybar
 link "$DOTS/karabiner"             ~/.config/karabiner
 link "$DOTS/bin/tmux-sessionizer"  ~/.local/bin/tmux-sessionizer
+ln -sf /Applications/love.app/Contents/MacOS/love ~/.local/bin/love
 
 # A GOROOT left over from an old shell config breaks mise's go install.
 unset GOROOT GOPATH

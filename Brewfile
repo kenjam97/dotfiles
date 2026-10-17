@@ -43,7 +43,7 @@ brew "odin"
 brew "raylib"
 brew "cmake"
 brew "bear" # compile_commands.json for clangd from plain Makefiles
-# LÖVE: the cask was disabled (fails Gatekeeper); install from https://love2d.org
+# LÖVE: cask disabled 2026-09 (fails Gatekeeper); bootstrap-mac.sh installs the GitHub release
 
 # apps
 # Alacritty: cask disabled 2026-09 (ad-hoc signed); bootstrap-mac.sh installs the GitHub release
