@@ -7,6 +7,11 @@ import = ["~/.config/alacritty/catppuccin-mocha.toml"]
 [env]
 TERM = "xterm-256color"
 
+[terminal]
+# Straight into tmux (attach to "main" or create it), same as Windows. The Cmd bindings
+# below send tmux's prefix, so they only work inside tmux.
+shell = { program = "/opt/homebrew/bin/tmux", args = ["new", "-A", "-s", "main"] }
+
 [cursor]
 style = { shape = "Block", blinking = "Off" }
 vi_mode_style = { shape = "Beam" }
