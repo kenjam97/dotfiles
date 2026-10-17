@@ -1,5 +1,8 @@
-# Claude critter: the Zebar mascot's 16x12 pixel art (critter/make.py renders the frames).
-# Bops while Spotify plays; click = play/pause.
+# Claude critter: the Zebar mascot's pixel art (critter/make.py renders the frames, notes
+# included). Bops while Spotify plays; click = play/pause.
+# icon.width is the whole pill (46pt, like Zebar). The frames are pill-sized with the critter
+# centred in them, since sketchybar left-aligns icon images. Images render at px * scale pt:
+# 120px * 0.383 = 46pt.
 sketchybar --add item mascot right \
            --set mascot icon="" \
                         icon.width=46 \
@@ -8,14 +11,8 @@ sketchybar --add item mascot right \
                         icon.background.drawing=on \
                         icon.background.color=$TRANSPARENT \
                         icon.background.image="$CONFIG_DIR/critter/idle.png" \
-                        icon.background.image.scale=0.6 \
-                        label.font="$FONT:Bold:11.0" \
-                        label.color=$PINK \
-                        label.width=0 \
-                        label.padding_left=-19 \
-                        label.padding_right=0 \
-                        label.y_offset=8 \
-                        label="" \
+                        icon.background.image.scale=0.383 \
+                        label.drawing=off \
                         background.color=$PILL_BG \
                         background.border_color=$PILL_BORDER \
                         background.border_width=1 \
