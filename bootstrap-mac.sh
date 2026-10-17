@@ -35,6 +35,19 @@ brew trust koekeishiya/formulae felixkratz/formulae
 # A cask upgrade that needs sudo shouldn't stop the rest; rerun `brew bundle` in a terminal later.
 brew bundle --file "$DOTS/Brewfile" || printf '\033[1;33m!! brew bundle had failures (see above); continuing\033[0m\n'
 
+step "Alacritty (official release; the Homebrew cask was disabled 2026-09)"
+alacritty_ver=$(/Applications/Alacritty.app/Contents/MacOS/alacritty --version 2>/dev/null | awk '{print $2}')
+latest=$(curl -fsSL https://api.github.com/repos/alacritty/alacritty/releases/latest | jq -r .tag_name)
+if [ "v${alacritty_ver:-none}" != "$latest" ]; then
+  tmp=$(mktemp -d)
+  curl -fsSL -o "$tmp/Alacritty.dmg" "https://github.com/alacritty/alacritty/releases/download/$latest/Alacritty-$latest.dmg"
+  hdiutil attach -nobrowse -readonly -mountpoint "$tmp/mnt" "$tmp/Alacritty.dmg" >/dev/null
+  [ -d /Applications/Alacritty.app ] && mv /Applications/Alacritty.app ~/.Trash/"Alacritty-${alacritty_ver:-old}-$(date +%s).app"
+  cp -R "$tmp/mnt/Alacritty.app" /Applications/
+  hdiutil detach -quiet "$tmp/mnt"
+  rm -rf "$tmp" /opt/homebrew/Caskroom/alacritty
+fi
+
 step "symlinks"
 mkdir -p ~/.local/bin ~/.config ~/code/personal ~/code/archive
 printf 'export ZDOTDIR="$HOME/.config/zsh"\n' > ~/.zshenv
