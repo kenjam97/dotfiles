@@ -16,12 +16,12 @@ for sid in {1..10}; do
                               padding_right=2 \
                               click_script="yabai -m space --focus $sid"
 done
-sketchybar --set space.1 padding_left=5 --set space.10 padding_right=5
+sketchybar --set space.1 padding_left=5  # right edge padding goes on the last visible space (plugin)
 
 sketchybar --add event window_focus \
            --add item spaces_refresh left \
            --set spaces_refresh drawing=off updates=on script="$PLUGINS/spaces.sh" \
            --subscribe spaces_refresh space_change space_windows_change display_change front_app_switched window_focus
 
-pill workspaces '/space\.[0-9]+/'
+pill workspaces '/space\..*/'  # sketchybar's patterns don't support [0-9]+
 gap gap.spaces left

@@ -11,9 +11,11 @@ while read -r idx focused visible wins; do
   fi
 done < <(jq -r '.[] | "\(.index) \(."has-focus") \(."is-visible") \(.windows | length)"' <<<"$spaces")
 
+last=${${(On)${(k)state}}[1]}
 args=()
 for sid in {1..10}; do
-  if [[ -n ${state[$sid]} ]]; then args+=(--set space.$sid drawing=on ${=state[$sid]})
+  if [[ -n ${state[$sid]} ]]; then
+    args+=(--set space.$sid drawing=on ${=state[$sid]} padding_right=$(( sid == last ? 5 : 2 )))
   else args+=(--set space.$sid drawing=off)
   fi
 done
