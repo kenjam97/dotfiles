@@ -3,9 +3,9 @@
 img="$CONFIG_DIR/critter"
 if [[ $SENDER == media_state ]]; then
   if [[ $PLAYING == 1 ]]; then
-    sketchybar --set "$NAME" update_freq=1 icon.padding_right=2 label.drawing=on
+    sketchybar --set "$NAME" update_freq=1
   else
-    sketchybar --set "$NAME" update_freq=0 icon.background.image="$img/idle.png" icon.y_offset=0 icon.padding_right=12 label="" label.drawing=off
+    sketchybar --set "$NAME" update_freq=0 icon.background.image="$img/idle.png" icon.y_offset=0 label=""
     exit 0
   fi
 elif [[ $SENDER != routine ]]; then
@@ -13,7 +13,7 @@ elif [[ $SENDER != routine ]]; then
 fi
 
 if (( $(date +%s) % 2 )); then
-  sketchybar --set "$NAME" icon.background.image="$img/dance1.png" icon.y_offset=2 label="♪" label.y_offset=5
+  sketchybar --set "$NAME" icon.background.image="$img/dance1.png" icon.y_offset=2 label="♪" label.y_offset=10
 else
-  sketchybar --set "$NAME" icon.background.image="$img/dance2.png" icon.y_offset=0 label="♫" label.y_offset=-1
+  sketchybar --set "$NAME" icon.background.image="$img/dance2.png" icon.y_offset=0 label="♫" label.y_offset=7
 fi
