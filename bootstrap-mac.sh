@@ -125,6 +125,7 @@ mkdir -p ~/.claude/hooks
 [ -e ~/.claude/settings.json ] || cp "$DOTS/claude/settings.json" ~/.claude/settings.json
 cp "$DOTS"/claude/hooks/*.sh ~/.claude/hooks/
 chmod +x ~/.claude/hooks/*.sh
+cp "$DOTS/claude/statusline.sh" ~/.claude/statusline.sh && chmod +x ~/.claude/statusline.sh
 
 step "Neovim plugins, LSPs, formatters (headless)"
 eval "$(mise activate bash --shims)"

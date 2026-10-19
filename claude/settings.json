@@ -70,17 +70,17 @@
       }
     ]
   },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh",
+    "padding": 0
+  },
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true,
-    "statuspane@claude-statuspane": true
-  },
-  "extraKnownMarketplaces": {
-    "claude-statuspane": {
-      "source": {
-        "source": "github",
-        "repo": "xuanji86/claude-statuspane"
-      }
-    }
+    "context7@claude-plugins-official": true,
+    "clangd-lsp@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true
   },
   "effortLevel": "medium",
   "modelSettings": {
